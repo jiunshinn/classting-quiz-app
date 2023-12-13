@@ -5,7 +5,7 @@ import colors from '../constants/colors';
 import fontSize from '../constants/fontSize';
 import spacing from '../constants/spacing';
 
-const HomePage = ({navigation}) => {
+function HomeScreen({navigation}) {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>CLASSTING QUIZ</Text>
@@ -23,7 +23,7 @@ const HomePage = ({navigation}) => {
       </View>
     </SafeAreaView>
   );
-};
+}
 
 const styles = StyleSheet.create({
   container: {
@@ -43,4 +43,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default HomePage;
+export default HomeScreen;

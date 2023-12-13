@@ -1,7 +1,8 @@
 const fontSize = {
   small: 14,
-  medium: 16,
-  large: 18,
+  medium: 18,
+  large: 22,
+  xxl: 26,
   title: 24,
 };
 

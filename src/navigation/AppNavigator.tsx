@@ -1,34 +1,40 @@
 import React from 'react';
 import {NavigationContainer} from '@react-navigation/native';
 import {createStackNavigator} from '@react-navigation/stack';
-import HomePage from '../screens/HomePage';
-import QuizPage from '../screens/QuizPage';
-import WrongNotePage from '../screens/WrongNotePage';
+import HomeScreen from '../screens/HomeScreen';
+import QuizScreen from '../screens/QuizScreen';
+import WrongNoteScreen from '../screens/WrongNoteScreen';
+import ResultsScreen from '../screens/ResultScreen';
 
 const Stack = createStackNavigator();
 
-const AppNavigator = () => {
+function AppNavigator() {
   return (
     <NavigationContainer>
       <Stack.Navigator initialRouteName="Home">
         <Stack.Screen
           name="Home"
-          component={HomePage}
+          component={HomeScreen}
           options={{title: '홈', headerShown: false}}
         />
         <Stack.Screen
           name="Quiz"
-          component={QuizPage}
-          options={{title: '퀴즈 풀기'}}
+          component={QuizScreen}
+          options={{title: '퀴즈 풀기', headerShown: false}}
         />
         <Stack.Screen
           name="WrongNote"
-          component={WrongNotePage}
+          component={WrongNoteScreen}
           options={{title: '오답 노트'}}
+        />
+        <Stack.Screen
+          name="ResultScreen"
+          component={ResultsScreen}
+          options={{title: '결과'}}
         />
       </Stack.Navigator>
     </NavigationContainer>
   );
-};
+}
 
 export default AppNavigator;

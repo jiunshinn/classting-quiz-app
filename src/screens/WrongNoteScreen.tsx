@@ -1,7 +1,7 @@
 import React from 'react';
 import {View, Text} from 'react-native';
 
-const WrongNotePage = () => {
+const WrongNoteScreen = () => {
   return (
     <View>
       <Text>오답 노트 페이지</Text>
@@ -10,4 +10,4 @@ const WrongNotePage = () => {
   );
 };
 
-export default WrongNotePage;
+export default WrongNoteScreen;
