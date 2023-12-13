@@ -48,10 +48,14 @@ function QuizScreen({navigation}: any) {
     return () => clearInterval(interval);
   }, []);
 
-  const handleAnswer = (answer: string) => {
-    setSelectedAnswer(answer);
+  const handleAnswer = () => {
+    if (!selectedAnswer) {
+      Alert.alert('알림', '정답을 선택해주세요.');
+      return;
+    }
+
     setIsAnswerChecked(true);
-    if (answer === currentQuestion.correct_answer) {
+    if (selectedAnswer === currentQuestion.correct_answer) {
       setCorrectCount(correctCount + 1);
     } else {
       setWrongAnswers([...wrongAnswers, currentQuestion]);
