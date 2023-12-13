@@ -4,6 +4,7 @@ import colors from '../constants/colors';
 import spacing from '../constants/spacing';
 import fontSize from '../constants/fontSize';
 import radius from '../constants/radius';
+import {formatTime} from '../utils/formatTime';
 
 interface StatusBarProps {
   elapsedTime: number;
@@ -16,13 +17,6 @@ function StatusBar({
   currentQuestionIndex,
   totalQuestions,
 }: StatusBarProps) {
-  const formatTime = (seconds: number): string => {
-    const pad = (num: number) => num.toString().padStart(2, '0');
-    const hours = pad(Math.floor(seconds / 3600));
-    const minutes = pad(Math.floor((seconds % 3600) / 60));
-    const secs = pad(seconds % 60);
-    return `${hours}:${minutes}:${secs}`;
-  };
   return (
     <View style={styles.container}>
       <Text style={styles.text}>소요시간: {formatTime(elapsedTime)}</Text>

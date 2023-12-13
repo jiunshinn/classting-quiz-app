@@ -74,7 +74,11 @@ function QuizScreen({navigation}: any) {
 
   const finishQuiz = async () => {
     // await AsyncStorage.setItem('wrongAnswers', JSON.stringify(wrongAnswers));
-    navigation.navigate('ResultScreen', {correctCount: 1, totalQuestions: 10});
+    navigation.navigate('ResultScreen', {
+      correctCount: correctCount,
+      totalQuestions: quizQuestions.length,
+      elapsedTime: timer,
+    });
   };
 
   const currentQuestion = quizQuestions[currentQuestionIndex];
