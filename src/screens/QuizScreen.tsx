@@ -14,6 +14,7 @@ import fontSize from '../constants/fontSize';
 import spacing from '../constants/spacing';
 import radius from '../constants/radius';
 import StatusBar from '../components/AppBar';
+import BaseLoading from '../components/Loading';
 
 function QuizScreen({navigation}: any) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
@@ -75,11 +76,7 @@ function QuizScreen({navigation}: any) {
   const currentQuestion = quizQuestions[currentQuestionIndex];
 
   if (isLoading || !quizQuestions.length) {
-    return (
-      <View>
-        <Text>Loading...</Text>
-      </View>
-    );
+    return <BaseLoading />;
   }
 
   const renderOptions = () => {
