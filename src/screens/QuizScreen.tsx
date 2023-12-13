@@ -13,7 +13,7 @@ import colors from '../constants/colors';
 import fontSize from '../constants/fontSize';
 import spacing from '../constants/spacing';
 import radius from '../constants/radius';
-import StatusBar from '../components/AppBar';
+import StatusBar from '../components/StatusBar';
 import BaseLoading from '../components/Loading';
 
 function QuizScreen({navigation}: any) {
