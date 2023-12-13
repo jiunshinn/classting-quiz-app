@@ -30,7 +30,7 @@ function AppNavigator() {
         <Stack.Screen
           name="ResultScreen"
           component={ResultsScreen}
-          options={{title: '결과'}}
+          options={{title: '결과', headerShown: false}}
         />
       </Stack.Navigator>
     </NavigationContainer>

@@ -1,19 +1,27 @@
 import React from 'react';
-import {Text, View} from 'react-native';
+import {SafeAreaView, StyleSheet, Text} from 'react-native';
 import {formatTime} from '../utils/formatTime';
 
 function ResultsScreen({route}) {
   const {correctCount, totalQuestions, elapsedTime} = route.params;
 
   return (
-    <View>
+    <SafeAreaView style={styles.container}>
       <Text>
         {totalQuestions}문제 중 {correctCount} 문제 정답.
       </Text>
       <Text>{totalQuestions - correctCount}문제를 틀렸습니다.</Text>
       <Text>소요시간: {formatTime(elapsedTime)}</Text>
-    </View>
+    </SafeAreaView>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+});
 
 export default ResultsScreen;
