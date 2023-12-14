@@ -9,6 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import {colors, fontSize, spacing} from '../constants/\btheme';
 
 export type WrongNoteScreenProps = StackScreenProps<
   RootNavigationType,
@@ -40,6 +41,17 @@ function WrongNoteScreen() {
 
     getQuizResults();
   }, []);
+
+  if (quizResults) {
+    return (
+      <SafeAreaView style={styles.noQuizContainer}>
+        <Text style={styles.noQuizTitle}>퀴즈 결과가 없습니다.</Text>
+        <Text style={styles.noQuizSubTitle}>
+          문제를 먼저 풀고 확인해주세요!
+        </Text>
+      </SafeAreaView>
+    );
+  }
 
   return (
     <SafeAreaView style={styles.container}>
@@ -80,6 +92,20 @@ const styles = StyleSheet.create({
   dateText: {},
   backText: {},
   answerContainer: {},
+  noQuizContainer: {
+    flex: 1,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  noQuizTitle: {
+    fontSize: fontSize.xxl,
+    color: colors.main,
+  },
+  noQuizSubTitle: {
+    fontSize: fontSize.large,
+    color: colors.black,
+    marginTop: spacing.medium,
+  },
 });
 
 export default WrongNoteScreen;
