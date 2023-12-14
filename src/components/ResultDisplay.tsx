@@ -33,7 +33,7 @@ const styles = StyleSheet.create({
   text: {
     color: colors.black,
     fontSize: fontSize.large,
-    fontWeight: 'medium',
+    fontWeight: '400',
   },
 });
 
