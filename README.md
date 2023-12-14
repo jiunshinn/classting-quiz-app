@@ -41,11 +41,16 @@ npm run start
 iphone 빌드(metro 실행 중)
 
 ```
-ios 시뮬레이터 iphone15가 설치되어 있는경우
+
+npm run ios
+
+```
+
+ios 시뮬레이터 iphone15가 설치되어 있는경우(metro 실행 중)
+
+```
 
 npm run iphone
-or
-npm run ios
 
 ```
 
