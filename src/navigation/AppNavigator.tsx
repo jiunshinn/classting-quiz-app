@@ -6,7 +6,7 @@ import QuizScreen from '../screens/QuizScreen';
 import WrongNoteScreen from '../screens/WrongNoteScreen';
 import ResultsScreen from '../screens/ResultScreen';
 
-const Stack = createStackNavigator();
+const Stack = createStackNavigator<RootNavigationType>();
 
 function AppNavigator() {
   return (
@@ -28,7 +28,7 @@ function AppNavigator() {
           options={{title: '오답 노트'}}
         />
         <Stack.Screen
-          name="ResultScreen"
+          name="Result"
           component={ResultsScreen}
           options={{title: '결과', headerShown: false}}
         />

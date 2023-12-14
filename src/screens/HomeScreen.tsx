@@ -4,8 +4,11 @@ import BasicButton from '../components/BasicButton';
 import colors from '../constants/colors';
 import fontSize from '../constants/fontSize';
 import spacing from '../constants/spacing';
+import {StackScreenProps} from '@react-navigation/stack';
 
-function HomeScreen({navigation}) {
+export type HomeScreenProps = StackScreenProps<RootNavigationType, 'Home'>;
+
+function HomeScreen({navigation}: HomeScreenProps) {
   return (
     <SafeAreaView style={styles.container}>
       <Text style={styles.title}>CLASSTING QUIZ</Text>

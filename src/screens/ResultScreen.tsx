@@ -1,8 +1,11 @@
 import React from 'react';
 import {SafeAreaView, StyleSheet, Text} from 'react-native';
 import {formatTime} from '../utils/formatTime';
+import {StackScreenProps} from '@react-navigation/stack';
 
-function ResultsScreen({route}) {
+export type ResultScreenProps = StackScreenProps<RootNavigationType, 'Result'>;
+
+function ResultsScreen({route}: ResultScreenProps) {
   const {correctCount, totalQuestions, elapsedTime} = route.params;
 
   return (

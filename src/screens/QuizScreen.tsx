@@ -15,8 +15,11 @@ import spacing from '../constants/spacing';
 import radius from '../constants/radius';
 import StatusBar from '../components/StatusBar';
 import BaseLoading from '../components/Loading';
+import {StackScreenProps} from '@react-navigation/stack';
 
-function QuizScreen({navigation}: any) {
+export type QuizScreenProps = StackScreenProps<RootNavigationType, 'Quiz'>;
+
+function QuizScreen({navigation}: QuizScreenProps) {
   const [currentQuestionIndex, setCurrentQuestionIndex] = useState(0);
   const [quizQuestions, setQuizQuestions] = useState<Question[]>([]);
   const [wrongAnswers, setWrongAnswers] = useState<Question[]>([]);
@@ -74,7 +77,7 @@ function QuizScreen({navigation}: any) {
 
   const finishQuiz = async () => {
     // await AsyncStorage.setItem('wrongAnswers', JSON.stringify(wrongAnswers));
-    navigation.navigate('ResultScreen', {
+    navigation.navigate('Result', {
       correctCount: correctCount,
       totalQuestions: quizQuestions.length,
       elapsedTime: timer,
@@ -133,10 +136,7 @@ function QuizScreen({navigation}: any) {
       ) : (
         <>
           {renderOptions()}
-          <BasicButton
-            title="확인"
-            onPress={() => handleAnswer(selectedAnswer!)}
-          />
+          <BasicButton title="확인" onPress={() => handleAnswer()} />
         </>
       )}
     </SafeAreaView>
