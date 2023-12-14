@@ -35,7 +35,12 @@ function ResultsScreen({route, navigation}: ResultScreenProps) {
             });
           }}
         />
-        <BasicButton title={'다시풀기'} onPress={() => {}} />
+        <BasicButton
+          title={'다시풀기'}
+          onPress={() => {
+            navigation.navigate('Quiz');
+          }}
+        />
       </View>
     </SafeAreaView>
   );
