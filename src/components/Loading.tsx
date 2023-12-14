@@ -1,11 +1,12 @@
 import React from 'react';
-import {View, ActivityIndicator, StyleSheet} from 'react-native';
+import {View, StyleSheet} from 'react-native';
 import colors from '../constants/colors';
+import * as Progress from 'react-native-progress';
 
 function BaseLoading() {
   return (
     <View style={styles.container}>
-      <ActivityIndicator size="large" color={colors.main} />
+      <Progress.Circle size={30} indeterminate={true} color={colors.main} />
     </View>
   );
 }
