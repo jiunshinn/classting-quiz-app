@@ -28,26 +28,27 @@ function QuizScreen({navigation}: QuizScreenProps) {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
-    const getchQuizData = async () => {
-      try {
-        const data = await getQuizList();
-        setQuizQuestions(data);
-      } catch (error) {
-        console.error('ERROR FETCHING QUIZ DATA : ', error);
-        Alert.alert('ERROR', '퀴즈 정보를 가져오는데 실패했습니다.');
-      }
-      setIsLoading(false);
-    };
     getchQuizData();
+    setupTimer();
   }, []);
 
-  useEffect(() => {
+  const getchQuizData = async () => {
+    try {
+      const data = await getQuizList();
+      setQuizQuestions(data);
+    } catch (error) {
+      console.error('ERROR FETCHING QUIZ DATA : ', error);
+      Alert.alert('ERROR', '퀴즈 정보를 가져오는데 실패했습니다.');
+    }
+    setIsLoading(false);
+  };
+
+  const setupTimer = () => {
     const interval = setInterval(() => {
       setTimer(prevTime => prevTime + 1);
     }, 1000);
-
     return () => clearInterval(interval);
-  }, []);
+  };
 
   const handleAnswer = () => {
     if (!selectedAnswer) {
