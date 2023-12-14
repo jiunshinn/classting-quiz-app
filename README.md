@@ -17,3 +17,41 @@
 - [ ] 정 오답에 대한 비율을 차트로 표기
 - [ ] 다시 풀기
 - [ ] 오답 노트
+
+<br/>
+### 실행방법
+<br/>
+
+```
+
+git clone git@github.com:jiun-dev/classting-quiz-app.git
+or
+https://github.com/jiun-dev/classting-quiz-app.git
+
+cd classting-quiz-app
+
+npm install
+
+cd ios && pod install && cd ..
+
+npm run start
+
+```
+
+iphone 빌드(metro 실행 중)
+
+```
+ios 시뮬레이터 iphone15가 설치되어 있는경우
+
+npm run iphone
+or
+npm run ios
+
+```
+
+android 빌드(metro 실행 중)
+
+```
+npm run android
+
+```
