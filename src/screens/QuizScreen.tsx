@@ -20,6 +20,7 @@ function QuizScreen({navigation}: QuizScreenProps) {
   const [isLoading, setIsLoading] = useState(true);
   const [correctCount, setCorrectCount] = useState(0);
   const [selectedAnswer, setSelectedAnswer] = useState<string | null>(null);
+  const [userAnswers, setUserAnswers] = useState<string[]>([]);
   const [isAnswerChecked, setIsAnswerChecked] = useState(false);
   const [timer, setTimer] = useState(0);
 
@@ -58,6 +59,9 @@ function QuizScreen({navigation}: QuizScreenProps) {
     } else {
       setWrongAnswers([...wrongAnswers, currentQuestion]);
     }
+    const updatedAnswers = [...userAnswers];
+    updatedAnswers[currentQuestionIndex] = selectedAnswer;
+    setUserAnswers(updatedAnswers);
   };
 
   const handleNextQuestion = () => {
@@ -74,8 +78,8 @@ function QuizScreen({navigation}: QuizScreenProps) {
     const wrongResults = quizQuestions
       .map((question, index) => ({
         ...question,
-        userAnswer: selectedAnswer,
-        isCorrect: selectedAnswer === question.correct_answer,
+        userAnswer: userAnswers[index],
+        isCorrect: userAnswers[index] === question.correct_answer,
         questionId: index + 1,
       }))
       .filter(question => !question.isCorrect);

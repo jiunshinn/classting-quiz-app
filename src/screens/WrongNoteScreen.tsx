@@ -10,6 +10,8 @@ import {
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors, fontSize, spacing} from '../constants/\btheme';
+import {formatDateString} from '../utils/formatTime';
+import BasicButton from '../components/BasicButton';
 
 export type WrongNoteScreenProps = StackScreenProps<
   RootNavigationType,
@@ -27,7 +29,7 @@ type QuizResult = {
   wrongAnswers: WrongAnswer[];
 };
 
-function WrongNoteScreen() {
+function WrongNoteScreen({navigation}: WrongNoteScreenProps) {
   const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
@@ -42,13 +44,14 @@ function WrongNoteScreen() {
     getQuizResults();
   }, []);
 
-  if (quizResults) {
+  if (quizResults.length === 0) {
     return (
       <SafeAreaView style={styles.noQuizContainer}>
         <Text style={styles.noQuizTitle}>퀴즈 결과가 없습니다.</Text>
         <Text style={styles.noQuizSubTitle}>
           문제를 먼저 풀고 확인해주세요!
         </Text>
+        <BasicButton title={'확인'} onPress={navigation.goBack} />
       </SafeAreaView>
     );
   }
@@ -58,29 +61,39 @@ function WrongNoteScreen() {
       <ScrollView>
         {selectedDate === null ? (
           quizResults.map((result, index) => (
-            <TouchableOpacity
-              key={index}
-              onPress={() => setSelectedDate(result.date)}>
-              <Text style={styles.dateText}>Date: {result.date}</Text>
-            </TouchableOpacity>
+            <View style={styles.card} key={index}>
+              <TouchableOpacity onPress={() => setSelectedDate(result.date)}>
+                <Text style={styles.dateText}>
+                  {formatDateString(result.date)}에 푼 퀴즈 오답노트 확인
+                </Text>
+              </TouchableOpacity>
+            </View>
           ))
         ) : (
           <View>
-            <TouchableOpacity onPress={() => setSelectedDate(null)}>
-              <Text style={styles.backText}>Back to Dates</Text>
-            </TouchableOpacity>
             {quizResults
               .find(result => result.date === selectedDate)
               ?.wrongAnswers.map((answer, ansIndex) => (
-                <View key={ansIndex} style={styles.answerContainer}>
-                  <Text>Question: {answer.question}</Text>
-                  <Text>Your Answer: {answer.userAnswer}</Text>
-                  <Text>Correct Answer: {answer.correct_answer}</Text>
+                <View key={ansIndex} style={styles.card}>
+                  <Text style={styles.question}>{answer.question}</Text>
+                  <Text style={styles.userAnswer}>
+                    내가 고른 정답 : {answer.userAnswer}
+                  </Text>
+                  <Text style={styles.correctAnswer}>
+                    실제 정답 : {answer.correct_answer}
+                  </Text>
                 </View>
               ))}
+            <BasicButton title={'확인'} onPress={() => setSelectedDate(null)} />
           </View>
         )}
       </ScrollView>
+      {!selectedDate && (
+        <BasicButton
+          title={'목록으로 돌아가기'}
+          onPress={() => navigation.goBack()}
+        />
+      )}
     </SafeAreaView>
   );
 }
@@ -88,10 +101,29 @@ function WrongNoteScreen() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: spacing.medium,
   },
-  dateText: {},
-  backText: {},
-  answerContainer: {},
+  dateText: {
+    fontSize: fontSize.medium,
+    color: colors.black,
+  },
+  backText: {
+    fontSize: fontSize.medium,
+    color: colors.black,
+    marginBottom: spacing.medium,
+  },
+  card: {
+    backgroundColor: '#fff',
+    borderRadius: 8,
+    padding: 10,
+    marginVertical: 5,
+    marginHorizontal: 10,
+    shadowColor: '#000',
+    shadowOffset: {width: 0, height: 1},
+    shadowOpacity: 0.2,
+    shadowRadius: 1,
+    elevation: 3,
+  },
   noQuizContainer: {
     flex: 1,
     justifyContent: 'center',
@@ -105,6 +137,20 @@ const styles = StyleSheet.create({
     fontSize: fontSize.large,
     color: colors.black,
     marginTop: spacing.medium,
+  },
+  question: {
+    fontSize: fontSize.large,
+    fontWeight: 'bold',
+  },
+  userAnswer: {
+    fontSize: fontSize.medium,
+    fontWeight: 'bold',
+    color: colors.error,
+  },
+  correctAnswer: {
+    fontSize: fontSize.medium,
+    fontWeight: 'bold',
+    color: colors.main,
   },
 });
 
