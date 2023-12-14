@@ -10,6 +10,7 @@ import {StackScreenProps} from '@react-navigation/stack';
 import {colors, fontSize, radius, spacing} from '../constants/\btheme';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import {decodeHTMLEntities} from '../utils/decodeHtml';
 
 export type QuizScreenProps = StackScreenProps<RootNavigationType, 'Quiz'>;
 
@@ -140,7 +141,9 @@ function QuizScreen({navigation}: QuizScreenProps) {
         currentQuestionIndex={currentQuestionIndex}
         totalQuestions={quizQuestions.length}
       />
-      <Text style={styles.question}>{currentQuestion.question}</Text>
+      <Text style={styles.question}>
+        {decodeHTMLEntities(currentQuestion.question)}
+      </Text>
       {isAnswerChecked ? (
         <>
           <Text
@@ -208,7 +211,6 @@ const styles = StyleSheet.create({
   },
   optionText: {},
   buttonContainer: {
-    width: '80%',
     marginVertical: spacing.small,
   },
 });
