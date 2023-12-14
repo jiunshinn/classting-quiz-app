@@ -34,6 +34,7 @@ or
 git clone https://github.com/jiun-dev/classting-quiz-app.git
 cd classting-quiz-app
 npm install
+
 cd ios && pod install && cd ..
 npm run start
 ```

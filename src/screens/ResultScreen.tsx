@@ -35,7 +35,7 @@ function ResultsScreen({route, navigation}: ResultScreenProps) {
             });
           }}
         />
-        <BasicButton title={'결과 저장하기'} onPress={() => {}} />
+        <BasicButton title={'다시풀기'} onPress={() => {}} />
       </View>
     </SafeAreaView>
   );

@@ -9,6 +9,8 @@ import BaseLoading from '../components/Loading';
 import {StackScreenProps} from '@react-navigation/stack';
 import {colors, fontSize, radius, spacing} from '../constants/\btheme';
 
+import AsyncStorage from '@react-native-async-storage/async-storage';
+
 export type QuizScreenProps = StackScreenProps<RootNavigationType, 'Quiz'>;
 
 function QuizScreen({navigation}: QuizScreenProps) {
@@ -69,12 +71,37 @@ function QuizScreen({navigation}: QuizScreenProps) {
   };
 
   const finishQuiz = async () => {
-    // await AsyncStorage.setItem('wrongAnswers', JSON.stringify(wrongAnswers));
-    navigation.replace('Result', {
-      correctCount: correctCount,
-      totalQuestions: quizQuestions.length,
-      elapsedTime: timer,
-    });
+    const wrongResults = quizQuestions
+      .map((question, index) => ({
+        ...question,
+        userAnswer: selectedAnswer,
+        isCorrect: selectedAnswer === question.correct_answer,
+        questionId: index + 1,
+      }))
+      .filter(question => !question.isCorrect);
+
+    const quizResult = {
+      date: new Date().toISOString(),
+      wrongAnswers: wrongResults,
+    };
+
+    try {
+      const existingResults = await AsyncStorage.getItem('wrongQuizResults');
+      const updatedResults = existingResults
+        ? [...JSON.parse(existingResults), quizResult]
+        : [quizResult];
+      await AsyncStorage.setItem(
+        'wrongQuizResults',
+        JSON.stringify(updatedResults),
+      );
+      navigation.replace('Result', {
+        correctCount,
+        totalQuestions: quizQuestions.length,
+        elapsedTime: timer,
+      });
+    } catch (error) {
+      console.error('저장 실패', error);
+    }
   };
 
   const currentQuestion = quizQuestions[currentQuestionIndex];

@@ -25,7 +25,7 @@ function AppNavigator() {
         <Stack.Screen
           name="WrongNote"
           component={WrongNoteScreen}
-          options={{title: '오답 노트'}}
+          options={{title: '오답 노트', headerShown: false}}
         />
         <Stack.Screen
           name="Result"
