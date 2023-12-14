@@ -1,14 +1,8 @@
 import React, {useEffect, useState} from 'react';
-import {
-  View,
-  Text,
-  Alert,
-  StyleSheet,
-  SafeAreaView,
-  TouchableOpacity,
-} from 'react-native';
+import {View, Text, Alert, StyleSheet, TouchableOpacity} from 'react-native';
 import {getQuizList} from '../api/quizApi';
 import BasicButton from '../components/BasicButton';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 import StatusBar from '../components/StatusBar';
 import BaseLoading from '../components/Loading';
@@ -145,6 +139,7 @@ function QuizScreen({navigation}: QuizScreenProps) {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
+    padding: spacing.medium,
   },
   correctAnswer: {
     color: colors.main,
