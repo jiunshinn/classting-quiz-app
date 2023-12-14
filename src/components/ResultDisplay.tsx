@@ -3,7 +3,6 @@ import {StyleSheet, Text, View} from 'react-native';
 import {formatTime} from '../utils/formatTime';
 import colors from '../constants/colors';
 import fontSize from '../constants/fontSize';
-import spacing from '../constants/spacing';
 
 interface ResultsDisplayProps {
   totalQuestions: number;
