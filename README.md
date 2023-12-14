@@ -26,7 +26,7 @@
 
 git clone git@github.com:jiun-dev/classting-quiz-app.git
 or
-https://github.com/jiun-dev/classting-quiz-app.git
+git clone https://github.com/jiun-dev/classting-quiz-app.git
 
 cd classting-quiz-app
 
