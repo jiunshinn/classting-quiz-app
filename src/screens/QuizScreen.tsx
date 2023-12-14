@@ -70,7 +70,7 @@ function QuizScreen({navigation}: QuizScreenProps) {
 
   const finishQuiz = async () => {
     // await AsyncStorage.setItem('wrongAnswers', JSON.stringify(wrongAnswers));
-    navigation.navigate('Result', {
+    navigation.replace('Result', {
       correctCount: correctCount,
       totalQuestions: quizQuestions.length,
       elapsedTime: timer,
