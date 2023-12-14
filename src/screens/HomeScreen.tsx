@@ -1,9 +1,7 @@
 import React from 'react';
 import {View, Text, StyleSheet, SafeAreaView} from 'react-native';
 import BasicButton from '../components/BasicButton';
-import colors from '../constants/colors';
-import fontSize from '../constants/fontSize';
-import spacing from '../constants/spacing';
+import {colors, fontSize, spacing} from '../constants/\btheme';
 import {StackScreenProps} from '@react-navigation/stack';
 
 export type HomeScreenProps = StackScreenProps<RootNavigationType, 'Home'>;

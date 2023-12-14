@@ -1,9 +1,6 @@
 import React from 'react';
 import {View, Text, StyleSheet} from 'react-native';
-import colors from '../constants/colors';
-import spacing from '../constants/spacing';
-import fontSize from '../constants/fontSize';
-import radius from '../constants/radius';
+import {colors, fontSize, radius, spacing} from '../constants/\btheme';
 import {formatTime} from '../utils/formatTime';
 
 interface StatusBarProps {

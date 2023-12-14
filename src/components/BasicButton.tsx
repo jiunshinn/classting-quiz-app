@@ -5,10 +5,7 @@ import {
   StyleSheet,
   GestureResponderEvent,
 } from 'react-native';
-import colors from '../constants/colors';
-import spacing from '../constants/spacing';
-import radius from '../constants/radius';
-import fontSize from '../constants/fontSize';
+import {colors, fontSize, radius, spacing} from '../constants/\btheme';
 
 interface CustomButtonProps {
   title: string;

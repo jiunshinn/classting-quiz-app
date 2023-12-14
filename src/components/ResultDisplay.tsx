@@ -1,8 +1,7 @@
 import React from 'react';
 import {StyleSheet, Text, View} from 'react-native';
 import {formatTime} from '../utils/formatTime';
-import colors from '../constants/colors';
-import fontSize from '../constants/fontSize';
+import {colors, fontSize} from '../constants/\btheme';
 
 interface ResultsDisplayProps {
   totalQuestions: number;

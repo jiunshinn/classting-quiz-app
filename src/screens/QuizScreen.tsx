@@ -9,13 +9,11 @@ import {
 } from 'react-native';
 import {getQuizList} from '../api/quizApi';
 import BasicButton from '../components/BasicButton';
-import colors from '../constants/colors';
-import fontSize from '../constants/fontSize';
-import spacing from '../constants/spacing';
-import radius from '../constants/radius';
+
 import StatusBar from '../components/StatusBar';
 import BaseLoading from '../components/Loading';
 import {StackScreenProps} from '@react-navigation/stack';
+import {colors, fontSize, radius, spacing} from '../constants/\btheme';
 
 export type QuizScreenProps = StackScreenProps<RootNavigationType, 'Quiz'>;
 

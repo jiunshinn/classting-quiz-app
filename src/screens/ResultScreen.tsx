@@ -3,8 +3,7 @@ import {SafeAreaView, StyleSheet, View} from 'react-native';
 import {StackScreenProps} from '@react-navigation/stack';
 import * as Progress from 'react-native-progress';
 import BasicButton from '../components/BasicButton';
-import colors from '../constants/colors';
-import spacing from '../constants/spacing';
+import {colors, spacing} from '../constants/\btheme';
 import ResultsDisplay from '../components/ResultDisplay';
 
 export type ResultScreenProps = StackScreenProps<RootNavigationType, 'Result'>;
