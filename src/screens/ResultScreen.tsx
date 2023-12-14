@@ -8,7 +8,7 @@ import ResultsDisplay from '../components/ResultDisplay';
 
 export type ResultScreenProps = StackScreenProps<RootNavigationType, 'Result'>;
 
-function ResultsScreen({route}: ResultScreenProps) {
+function ResultsScreen({route, navigation}: ResultScreenProps) {
   const {correctCount, totalQuestions, elapsedTime} = route.params;
 
   return (
@@ -26,7 +26,15 @@ function ResultsScreen({route}: ResultScreenProps) {
         elapsedTime={elapsedTime}
       />
       <View style={styles.buttonContainer}>
-        <BasicButton title={'메인 화면으로 돌아가기'} onPress={() => {}} />
+        <BasicButton
+          title={'메인 화면으로 돌아가기'}
+          onPress={() => {
+            navigation.reset({
+              index: 0,
+              routes: [{name: 'Home'}],
+            });
+          }}
+        />
         <BasicButton title={'결과 저장하기'} onPress={() => {}} />
       </View>
     </SafeAreaView>
