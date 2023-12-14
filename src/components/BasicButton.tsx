@@ -7,12 +7,12 @@ import {
 } from 'react-native';
 import {colors, fontSize, radius, spacing} from '../constants/\btheme';
 
-interface CustomButtonProps {
+interface BasicButtonProps {
   title: string;
   onPress: (event: GestureResponderEvent) => void;
 }
 
-function BasicButton({title, onPress}: CustomButtonProps) {
+function BasicButton({title, onPress}: BasicButtonProps) {
   return (
     <TouchableOpacity style={styles.button} onPress={onPress}>
       <Text style={styles.text}>{title}</Text>
