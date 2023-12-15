@@ -1,10 +1,10 @@
 type RootNavigationType = {
-  Home: undefined;
-  Quiz: undefined;
+  Home;
+  Quiz;
   Result: {
     correctCount: number;
     totalQuestions: number;
     elapsedTime: number;
   };
-  WrongNote: undefined;
+  WrongNote;
 };
