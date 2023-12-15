@@ -22,5 +22,6 @@ describe('BasicButton 컴포넌트 테스트', () => {
     fireEvent.press(buttonElement);
 
     expect(onPressMock).toHaveBeenCalled();
+    expect(onPressMock).toHaveBeenCalledTimes(1);
   });
 });
