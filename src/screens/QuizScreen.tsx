@@ -11,6 +11,7 @@ import {colors, fontSize, radius, spacing} from '../constants/\btheme';
 
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {decodeHTMLEntities} from '../utils/decodeHtml';
+import {AxiosError} from 'axios';
 
 export type QuizScreenProps = StackScreenProps<RootNavigationType, 'Quiz'>;
 
@@ -35,11 +36,23 @@ function QuizScreen({navigation}: QuizScreenProps) {
       const data = await getQuizList();
       setQuizQuestions(data);
     } catch (error) {
-      console.error('ERROR FETCHING QUIZ DATA : ', error);
-      Alert.alert(
-        'ERROR',
-        '퀴즈 정보를 가져오는데 실패했습니다.\n잠시 후 시도해주세요',
-      );
+      if (error instanceof AxiosError && error.response?.status) {
+        const {status} = error.response;
+        switch (status) {
+          case 429:
+            Alert.alert(
+              '퀴즈 정보를 가져오는데 실패했습니다.잠시 후 시도해주세요.',
+            );
+            break;
+          case 500:
+            Alert.alert('서버에 오류가 발생했습니다.잠시 후 시도해주세요.');
+            break;
+          default:
+            Alert.alert('잘못된 요청입니다.잠시 후 시도해주세요.');
+            break;
+        }
+        navigation.goBack();
+      }
     }
     setIsLoading(false);
   };
