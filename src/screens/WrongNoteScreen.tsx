@@ -12,6 +12,7 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import {colors, fontSize, spacing} from '../constants/\btheme';
 import {formatDateString} from '../utils/formatTime';
 import BasicButton from '../components/BasicButton';
+import {decodeHTMLEntities} from '../utils/decodeHtml';
 
 export type WrongNoteScreenProps = StackScreenProps<
   RootNavigationType,
@@ -34,15 +35,15 @@ function WrongNoteScreen({navigation}: WrongNoteScreenProps) {
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
 
   useEffect(() => {
-    const getQuizResults = async () => {
-      const results = await AsyncStorage.getItem('wrongQuizResults');
-      if (results) {
-        setQuizResults(JSON.parse(results));
-      }
-    };
-
     getQuizResults();
   }, []);
+
+  const getQuizResults = async () => {
+    const results = await AsyncStorage.getItem('wrongQuizResults');
+    if (results) {
+      setQuizResults(JSON.parse(results));
+    }
+  };
 
   if (quizResults.length === 0) {
     return (
@@ -75,7 +76,9 @@ function WrongNoteScreen({navigation}: WrongNoteScreenProps) {
               .find(result => result.date === selectedDate)
               ?.wrongAnswers.map((answer, ansIndex) => (
                 <View key={ansIndex} style={styles.card}>
-                  <Text style={styles.question}>{answer.question}</Text>
+                  <Text style={styles.question}>
+                    {decodeHTMLEntities(answer.question)}
+                  </Text>
                   <Text style={styles.userAnswer}>
                     내가 고른 정답 : {answer.userAnswer}
                   </Text>
