@@ -36,7 +36,10 @@ function QuizScreen({navigation}: QuizScreenProps) {
       setQuizQuestions(data);
     } catch (error) {
       console.error('ERROR FETCHING QUIZ DATA : ', error);
-      Alert.alert('ERROR', '퀴즈 정보를 가져오는데 실패했습니다.');
+      Alert.alert(
+        'ERROR',
+        '퀴즈 정보를 가져오는데 실패했습니다.\n잠시 후 시도해주세요',
+      );
     }
     setIsLoading(false);
   };
@@ -55,7 +58,8 @@ function QuizScreen({navigation}: QuizScreenProps) {
     }
 
     setIsAnswerChecked(true);
-    if (selectedAnswer === currentQuestion.correct_answer) {
+    const isAnswerCorrect = selectedAnswer === currentQuestion.correct_answer;
+    if (isAnswerCorrect) {
       setCorrectCount(correctCount + 1);
     } else {
       setWrongAnswers([...wrongAnswers, currentQuestion]);
@@ -115,7 +119,7 @@ function QuizScreen({navigation}: QuizScreenProps) {
     return <BaseLoading />;
   }
 
-  const renderOptions = () => {
+  const renderOptionsView = () => {
     const options = currentQuestion.incorrect_answers.concat(
       currentQuestion.correct_answer,
     );
@@ -134,6 +138,21 @@ function QuizScreen({navigation}: QuizScreenProps) {
     ));
   };
 
+  const renderResultView = () => {
+    return (
+      <Text
+        style={
+          selectedAnswer === currentQuestion.correct_answer
+            ? styles.correctAnswer
+            : styles.wrongAnswer
+        }>
+        {selectedAnswer === currentQuestion.correct_answer
+          ? '정답입니다!'
+          : '틀렸습니다!'}
+      </Text>
+    );
+  };
+
   return (
     <SafeAreaView style={styles.container}>
       <StatusBar
@@ -146,23 +165,14 @@ function QuizScreen({navigation}: QuizScreenProps) {
       </Text>
       {isAnswerChecked ? (
         <>
-          <Text
-            style={
-              selectedAnswer === currentQuestion.correct_answer
-                ? styles.correctAnswer
-                : styles.wrongAnswer
-            }>
-            {selectedAnswer === currentQuestion.correct_answer
-              ? '정답입니다!'
-              : '틀렸습니다!'}
-          </Text>
+          {renderResultView()}
           <View style={styles.buttonContainer}>
-            <BasicButton title="다음" onPress={handleNextQuestion} />
+            <BasicButton title="다음" onPress={() => handleNextQuestion()} />
           </View>
         </>
       ) : (
         <>
-          {renderOptions()}
+          {renderOptionsView()}
           <BasicButton title="확인" onPress={() => handleAnswer()} />
         </>
       )}
