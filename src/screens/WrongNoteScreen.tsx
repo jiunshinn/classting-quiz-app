@@ -9,7 +9,7 @@ import {
   StyleSheet,
 } from 'react-native';
 import {SafeAreaView} from 'react-native-safe-area-context';
-import {colors, fontSize, spacing} from '../constants/\btheme';
+import {colors, fontSize, radius, spacing} from '../constants/\btheme';
 import {formatDateString} from '../utils/formatTime';
 import BasicButton from '../components/BasicButton';
 import {decodeHTMLEntities} from '../utils/decodeHtml';
@@ -52,43 +52,51 @@ function WrongNoteScreen({navigation}: WrongNoteScreenProps) {
         <Text style={styles.noQuizSubTitle}>
           문제를 먼저 풀고 확인해주세요!
         </Text>
-        <BasicButton title={'확인'} onPress={navigation.goBack} />
+        <BasicButton title={'확인'} onPress={() => navigation.goBack()} />
       </SafeAreaView>
     );
   }
+
+  const renderWrongAnswersList = () => {
+    return quizResults.map((result, index) => (
+      <View style={styles.card} key={index}>
+        <TouchableOpacity onPress={() => setSelectedDate(result.date)}>
+          <Text style={styles.dateText}>
+            {formatDateString(result.date)}에 푼 퀴즈 오답노트 확인
+          </Text>
+        </TouchableOpacity>
+      </View>
+    ));
+  };
+
+  const renderWrongAnswerDetail = () => {
+    return quizResults
+      .find(result => result.date === selectedDate)
+      ?.wrongAnswers.map((answer, ansIndex) => (
+        <View key={ansIndex} style={styles.card}>
+          <Text style={styles.question}>
+            {decodeHTMLEntities(answer.question)}
+          </Text>
+          <Text style={styles.userAnswer}>
+            내가 고른 정답 : {answer.userAnswer}
+          </Text>
+          <Text style={styles.correctAnswer}>
+            실제 정답 : {answer.correct_answer}
+          </Text>
+        </View>
+      ));
+  };
 
   return (
     <SafeAreaView style={styles.container}>
       <ScrollView>
         {selectedDate === null ? (
-          quizResults.map((result, index) => (
-            <View style={styles.card} key={index}>
-              <TouchableOpacity onPress={() => setSelectedDate(result.date)}>
-                <Text style={styles.dateText}>
-                  {formatDateString(result.date)}에 푼 퀴즈 오답노트 확인
-                </Text>
-              </TouchableOpacity>
-            </View>
-          ))
+          <>{renderWrongAnswersList()}</>
         ) : (
-          <View>
-            {quizResults
-              .find(result => result.date === selectedDate)
-              ?.wrongAnswers.map((answer, ansIndex) => (
-                <View key={ansIndex} style={styles.card}>
-                  <Text style={styles.question}>
-                    {decodeHTMLEntities(answer.question)}
-                  </Text>
-                  <Text style={styles.userAnswer}>
-                    내가 고른 정답 : {answer.userAnswer}
-                  </Text>
-                  <Text style={styles.correctAnswer}>
-                    실제 정답 : {answer.correct_answer}
-                  </Text>
-                </View>
-              ))}
+          <>
+            {renderWrongAnswerDetail()}
             <BasicButton title={'확인'} onPress={() => setSelectedDate(null)} />
-          </View>
+          </>
         )}
       </ScrollView>
       {!selectedDate && (
@@ -116,12 +124,12 @@ const styles = StyleSheet.create({
     marginBottom: spacing.medium,
   },
   card: {
-    backgroundColor: '#fff',
-    borderRadius: 8,
-    padding: 10,
-    marginVertical: 5,
-    marginHorizontal: 10,
-    shadowColor: '#000',
+    backgroundColor: colors.white,
+    borderRadius: radius.medium,
+    padding: spacing.medium,
+    marginVertical: spacing.small,
+    marginHorizontal: spacing.medium,
+    shadowColor: colors.black,
     shadowOffset: {width: 0, height: 1},
     shadowOpacity: 0.2,
     shadowRadius: 1,
