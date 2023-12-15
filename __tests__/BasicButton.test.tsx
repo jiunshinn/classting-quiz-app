@@ -25,3 +25,21 @@ describe('BasicButton 컴포넌트 테스트', () => {
     expect(onPressMock).toHaveBeenCalledTimes(1);
   });
 });
+
+function getTempComponent(props: any): React.ReactElement {
+  return <BasicButton {...props} />;
+}
+
+let props;
+let component: React.ReactElement;
+
+describe('BasicButton 컴포넌트 테스트', () => {
+  props = {};
+  component = getTempComponent(props);
+
+  test('컴포넌트 렌더링 테스트', () => {
+    const rendered = render(component);
+    expect(rendered).toMatchSnapshot();
+    expect(rendered).toBeTruthy();
+  });
+});
