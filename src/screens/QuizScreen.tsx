@@ -51,8 +51,8 @@ function QuizScreen({navigation}: QuizScreenProps) {
             Alert.alert('잘못된 요청입니다.잠시 후 시도해주세요.');
             break;
         }
-        navigation.goBack();
       }
+      navigation.goBack();
     }
     setIsLoading(false);
   };
