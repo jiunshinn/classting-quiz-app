@@ -1,0 +1,91 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`QuizScreen 컴포넌트 테스트 컴포넌트 렌더링 테스트 1`] = `
+<View
+  style={
+    {
+      "alignItems": "center",
+      "flex": 1,
+      "justifyContent": "center",
+    }
+  }
+>
+  <View
+    indeterminateAnimationDuration={1000}
+    style={
+      [
+        {
+          "backgroundColor": "transparent",
+          "overflow": "hidden",
+        },
+        undefined,
+      ]
+    }
+  >
+    <RNSVGSvgView
+      bbHeight="30"
+      bbWidth="30"
+      collapsable={false}
+      fill="none"
+      focusable={false}
+      height={30}
+      style={
+        [
+          {
+            "backgroundColor": "transparent",
+            "borderWidth": 0,
+          },
+          {
+            "transform": [
+              {
+                "rotate": "0deg",
+              },
+            ],
+          },
+          {
+            "flex": 0,
+            "height": 30,
+            "width": 30,
+          },
+        ]
+      }
+      width={30}
+    >
+      <RNSVGGroup
+        fill={null}
+        propList={
+          [
+            "fill",
+          ]
+        }
+      >
+        <RNSVGPath
+          d="M15 0.5
+          A14.5 14.5 0 1 1 6.477113841759136 3.269253581563264"
+          fill={
+            {
+              "payload": 4278190080,
+              "type": 0,
+            }
+          }
+          propList={
+            [
+              "stroke",
+              "strokeWidth",
+              "strokeLinecap",
+            ]
+          }
+          stroke={
+            {
+              "payload": 4283215696,
+              "type": 0,
+            }
+          }
+          strokeLinecap={0}
+          strokeWidth="1"
+        />
+      </RNSVGGroup>
+    </RNSVGSvgView>
+  </View>
+</View>
+`;
