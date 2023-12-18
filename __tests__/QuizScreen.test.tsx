@@ -1,4 +1,4 @@
-import {render} from '@testing-library/react-native';
+import {act, render} from '@testing-library/react-native';
 import QuizScreen from '../src/screens/QuizScreen';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
@@ -37,8 +37,13 @@ describe('QuizScreen 컴포넌트 테스트', () => {
     },
   };
 
-  test('컴포넌트 스냅샷 테스트', () => {
+  test('컴포넌트 스냅샷 테스트', async () => {
+    jest.useFakeTimers();
     const rendered = render(<QuizScreen {...props} />);
+
+    act(() => {
+      jest.advanceTimersByTime(1000);
+    });
 
     expect(rendered).toMatchSnapshot();
     expect(rendered).toBeTruthy();
