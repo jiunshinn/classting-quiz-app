@@ -6,7 +6,7 @@ import {RouteProp} from '@react-navigation/native';
 
 const mockQuizResults = [
   {
-    date: '2023-03-01',
+    date: '2023-12-14T04:10:23.637Z',
     wrongAnswers: [
       {
         question: 'What is the capital of France?',
@@ -21,7 +21,7 @@ jest.mock('@react-native-async-storage/async-storage', () => ({
   getItem: jest.fn(() => Promise.resolve(JSON.stringify(mockQuizResults))),
 }));
 
-describe('WrongNote screen 컴포넌트 테스트', async () => {
+describe('WrongNote screen 컴포넌트 테스트', () => {
   const mockNavigate = jest.fn();
   const props: {
     navigation: StackNavigationProp<RootNavigationType, 'WrongNote'>;
@@ -44,7 +44,9 @@ describe('WrongNote screen 컴포넌트 테스트', async () => {
   test('오답노트 선택 시 랜더링 테스트', async () => {
     const {getByText, findByText} = render(<WrongNoteScreen {...props} />);
 
-    const dateButton = await findByText('2023-03-01에 푼 퀴즈 오답노트 확인');
+    const dateButton = await findByText(
+      '2023년 12월 14일 13시 10분에 푼 퀴즈 오답노트 확인',
+    );
     await waitFor(() => {
       fireEvent.press(dateButton);
       expect(getByText('What is the capital of France?')).toBeTruthy();
