@@ -27,7 +27,7 @@ function QuizScreen({navigation}: QuizScreenProps) {
   const [timer, setTimer] = useState(0);
 
   useEffect(() => {
-    getchQuizData();
+    getQuizData();
     const interval = setupTimer();
 
     return () => {
@@ -35,7 +35,7 @@ function QuizScreen({navigation}: QuizScreenProps) {
     };
   }, []);
 
-  const getchQuizData = async () => {
+  const getQuizData = async () => {
     try {
       const data = await getQuizList();
       setQuizQuestions(data);
