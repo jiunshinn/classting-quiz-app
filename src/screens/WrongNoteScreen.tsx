@@ -19,17 +19,6 @@ export type WrongNoteScreenProps = StackScreenProps<
   'WrongNote'
 >;
 
-type WrongAnswer = {
-  question: string;
-  userAnswer: string;
-  correct_answer: string;
-};
-
-type QuizResult = {
-  date: string;
-  wrongAnswers: WrongAnswer[];
-};
-
 function WrongNoteScreen({navigation}: WrongNoteScreenProps) {
   const [quizResults, setQuizResults] = useState<QuizResult[]>([]);
   const [selectedDate, setSelectedDate] = useState<string | null>(null);
