@@ -3,20 +3,6 @@ import QuizScreen from '../src/screens/QuizScreen';
 import {StackNavigationProp} from '@react-navigation/stack';
 import {RouteProp} from '@react-navigation/native';
 
-jest.mock('react-native', () => {
-  const RN = jest.requireActual('react-native');
-
-  return Object.setPrototypeOf(
-    {
-      Alert: {
-        ...RN.Alert,
-        alert: jest.fn(),
-      },
-    },
-    RN,
-  );
-});
-
 describe('QuizScreen 컴포넌트 테스트', () => {
   const mockNavigate = jest.fn();
   const props: {
