@@ -28,7 +28,11 @@ function QuizScreen({navigation}: QuizScreenProps) {
 
   useEffect(() => {
     getchQuizData();
-    setupTimer();
+    const interval = setupTimer();
+
+    return () => {
+      clearInterval(interval);
+    };
   }, []);
 
   const getchQuizData = async () => {
@@ -58,10 +62,9 @@ function QuizScreen({navigation}: QuizScreenProps) {
   };
 
   const setupTimer = () => {
-    const interval = setInterval(() => {
+    return setInterval(() => {
       setTimer(prevTime => prevTime + 1);
     }, 1000);
-    return () => clearInterval(interval);
   };
 
   const handleAnswer = () => {
