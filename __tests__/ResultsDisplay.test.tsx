@@ -30,7 +30,7 @@ function getTempComponent(props: any): React.ReactElement {
 let props;
 let component: React.ReactElement;
 
-describe('ResultsDisplay 컴포넌트 테스트', () => {
+describe('ResultsDisplay 컴포넌트 스냅샷 테스트', () => {
   props = {};
   component = getTempComponent(props);
 

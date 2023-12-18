@@ -1,5 +1,62 @@
 // Jest Snapshot v1, https://goo.gl/fbAQLP
 
+exports[`ResultsDisplay 컴포넌트 스냅샷 테스트 컴포넌트 렌더링 테스트 1`] = `
+<View
+  style={
+    {
+      "alignItems": "flex-start",
+    }
+  }
+>
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontSize": 22,
+        "fontWeight": "400",
+      }
+    }
+  >
+    총 퀴즈 개수: 
+  </Text>
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontSize": 22,
+        "fontWeight": "400",
+      }
+    }
+  >
+    정답: 
+  </Text>
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontSize": 22,
+        "fontWeight": "400",
+      }
+    }
+  >
+    오답: 
+    NaN
+  </Text>
+  <Text
+    style={
+      {
+        "color": "#000000",
+        "fontSize": 22,
+        "fontWeight": "400",
+      }
+    }
+  >
+    소요시간: 
+    NaN:NaN:NaN
+  </Text>
+</View>
+`;
+
 exports[`ResultsDisplay 컴포넌트 테스트 컴포넌트 렌더링 테스트 1`] = `
 <View
   style={
