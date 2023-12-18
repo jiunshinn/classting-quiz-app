@@ -12,6 +12,7 @@ import {colors, fontSize, radius, spacing} from '../constants/\btheme';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import {decodeHTMLEntities} from '../utils/decodeHtml';
 import {AxiosError} from 'axios';
+import useTimer from '../hooks/useTimer';
 
 export type QuizScreenProps = StackScreenProps<RootNavigationType, 'Quiz'>;
 
@@ -28,12 +29,14 @@ function QuizScreen({navigation}: QuizScreenProps) {
 
   useEffect(() => {
     getQuizData();
-    const interval = setupTimer();
-
-    return () => {
-      clearInterval(interval);
-    };
   }, []);
+
+  useTimer(setTimer);
+
+  // useEffect(() => {
+  //   const interval = setupTimer();
+  //   return () => clearInterval(interval);
+  // }, []);
 
   const getQuizData = async () => {
     try {
@@ -61,11 +64,11 @@ function QuizScreen({navigation}: QuizScreenProps) {
     setIsLoading(false);
   };
 
-  const setupTimer = () => {
-    return setInterval(() => {
-      setTimer(prevTime => prevTime + 1);
-    }, 1000);
-  };
+  // const setupTimer = () => {
+  //   return setInterval(() => {
+  //     setTimer(prevTime => prevTime + 1);
+  //   }, 1000);
+  // };
 
   const handleAnswer = () => {
     if (!selectedAnswer) {
